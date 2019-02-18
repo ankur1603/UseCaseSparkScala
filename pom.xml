@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>UseCase</groupId>
+	<artifactId>UseCase</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>UseCase</name>
+	<description>SG Training Practice Use Case</description>
+
+	<properties>
+		<version.scala.binary>2.11</version.scala.binary>
+		<version.org.apache.spark>2.2.3</version.org.apache.spark>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_${version.scala.binary}</artifactId>
+			<version>${version.org.apache.spark}</version>
+		</dependency>
+
+		<!-- avoids compile error: Could not access type DataFrame in package org.apache.spark.sql -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_${version.scala.binary}</artifactId>
+			<version>${version.org.apache.spark}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
+
+
+		<plugins>
+			<!-- <plugin> <artifactId>maven-compiler-plugin</artifactId> <version>3.8.0</version> 
+				<configuration> <source>1.8</source> <target>1.8</target> </configuration> 
+				</plugin> -->
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>3.1.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
